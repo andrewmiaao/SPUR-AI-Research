@@ -139,7 +139,7 @@ If the M0 deployment itself is blocked, record the blocker and seek an approved 
 
 | Environment | URL | Source | Status |
 | --- | --- | --- | --- |
-| Production (GitHub Pages) — Brooklyn Community Kitchen entry shell | <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/> | `main` branch, `docs/kitchen/` | Returned HTTP 200 on 2026-11-13 (automated request). Owner confirmed on 2026-11-13 that it loads on a real desktop and phone; browser and device models not recorded. |
+| Production (GitHub Pages) — Brooklyn Community Kitchen entry shell | <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/> | `main` branch, `docs/kitchen/` | Returned HTTP 200 on 2026-11-13 (automated request). Owner confirmed on 2026-11-13 that it loads on a real desktop and phone; Google Chrome on desktop and Safari on phone, readable without horizontal scrolling (details in WORK-LOG.md). M0 complete. |
 | Production (GitHub Pages) — existing SPUR landing page | <https://andrewmiaao.github.io/SPUR-AI-Research/> | `main` branch, `docs/` | Returned HTTP 200 on 2026-11-13; unchanged. |
 
 GitHub Pages publishes from the `main` branch, `/docs` folder (legacy branch build, HTTPS enforced). There is no staging environment; local preview is opening the files under `docs/` directly.

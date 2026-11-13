@@ -30,7 +30,7 @@ Time worked earlier this week, if any, has not yet been reported. Actual hours a
 | Date | Task | What was verified | By whom | Not recorded |
 | --- | --- | --- | --- | --- |
 | 2026-11-13 | T-004 (M0) | <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/> returned HTTP 200 and served the kitchen page; the site root still served the SPUR landing page. | Automated request | — |
-| 2026-11-13 | T-004 (M0) | The `/kitchen/` URL loads on a real desktop and a real phone. | Project owner (reported) | Browser and device used; whether the page reads without horizontal scrolling. |
+| 2026-11-13 | T-004 (M0) | The `/kitchen/` URL loads on a real desktop and a real phone. | Project owner (reported) | Reported the same day: Google Chrome on desktop and Safari on phone; readable without horizontal scrolling on both. Device models not reported. |
 
 ## How to update
 
