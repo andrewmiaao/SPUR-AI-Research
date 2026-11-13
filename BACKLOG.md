@@ -18,18 +18,16 @@
 
 ## Now (M0 and M1: demo production release, target 2026-11-21)
 
-Base estimate remaining: M0 3.5 h, M1 8 h (11.5 h before the 50% buffer). Fictional data only. No persistence, no form submission, no external service, no cost.
+Base estimate remaining: M0 1 h, M1 8 h (9 h before the 50% buffer). Fictional data only. No persistence, no form submission, no external service, no cost.
 
 | # | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | --- | ---: | --- |
-| 1 | T-002 | Confirm GitHub Pages is enabled for this repository and serving from `/docs`; record the exact production URL in PLAN.md §10. | Infra | 0.5 | — |
-| 2 | T-003 | Create the minimal Brooklyn Community Kitchen entry shell at `docs/kitchen/index.html`, leaving `docs/index.html` unchanged. | Infra (FR-17 route prerequisite) | 2 | — |
-| 3 | T-004 | Deploy the shell and verify the production URL on desktop and phone; record URL, date and devices in WORK-LOG.md. | Infra (FR-17 route prerequisite) | 1 | T-002, T-003 |
-| 4 | T-005a | Prototype state 1: the page lists the two public shift blocks (7:30 a.m. and 11:00 a.m.) from hard-coded fictional data, and choosing one with space shows the request as active. | US-02, FR-03 (prototype only) | 2.5 | T-004 |
-| 5 | T-005b | Prototype state 2: choosing a shift block that is already full shows the request as waitlisted. | US-02, FR-03 (prototype only) | 1.5 | T-005a |
-| 6 | T-005c | Prototype state 3: a second request in the same week is rejected with a plain-language message. | US-02, FR-04 (prototype only) | 1.5 | T-005a |
-| 7 | T-005d | Deploy the prototype; confirm on desktop and phone that all three states work from a clean page load and that the page sends no data anywhere. | US-02 (prototype only) | 1.5 | T-005b, T-005c |
-| 8 | T-009 | Walk the owner through the demo at the production URL in under one minute; record feedback, blockers and new decisions in WORK-LOG.md. | US-02 (prototype only) | 1 | T-005d |
+| 1 | T-004 | Deploy the shell and verify the production URL on desktop and phone; record URL, date and devices in WORK-LOG.md. | Infra (FR-17 route prerequisite) | 1 | T-002, T-003 |
+| 2 | T-005a | Prototype state 1: the page lists the two public shift blocks (7:30 a.m. and 11:00 a.m.) from hard-coded fictional data, and choosing one with space shows the request as active. | US-02, FR-03 (prototype only) | 2.5 | T-004 |
+| 3 | T-005b | Prototype state 2: choosing a shift block that is already full shows the request as waitlisted. | US-02, FR-03 (prototype only) | 1.5 | T-005a |
+| 4 | T-005c | Prototype state 3: a second request in the same week is rejected with a plain-language message. | US-02, FR-04 (prototype only) | 1.5 | T-005a |
+| 5 | T-005d | Deploy the prototype; confirm on desktop and phone that all three states work from a clean page load and that the page sends no data anywhere. | US-02 (prototype only) | 1.5 | T-005b, T-005c |
+| 6 | T-009 | Walk the owner through the demo at the production URL in under one minute; record feedback, blockers and new decisions in WORK-LOG.md. | US-02 (prototype only) | 1 | T-005d |
 
 ### Acceptance criteria
 
@@ -167,3 +165,5 @@ Ideas from CONCEPT-IDEA.md that are outside v1. None is approved or scheduled.
 | ID | Task | Ref | Done | Result |
 | --- | --- | --- | --- | --- |
 | T-001 | Get the owner's decision on the M0/M1 proposals in PLAN.md §6. | Infra | 2026-11-13 | Owner approved all M0/M1 proposals without changes; recorded in PLAN.md §6 and §10. |
+| T-002 | Confirm GitHub Pages is enabled for this repository and serving from `/docs`; record the exact production URL in PLAN.md §10. | Infra | 2026-11-13 | Pages was already enabled, publishing from `main`, `/docs`. Source and URL recorded in PLAN.md §11 (Environments) and referenced from §10. |
+| T-003 | Create the minimal Brooklyn Community Kitchen entry shell at `docs/kitchen/index.html`, leaving `docs/index.html` unchanged. | Infra (FR-17 route prerequisite) | 2026-11-13 | Created and deployed; `docs/index.html` unchanged. By owner instruction the page shows the project name and the concept's one-sentence pitch, not the "tools are coming" statement in the acceptance criterion. |

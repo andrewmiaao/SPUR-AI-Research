@@ -129,7 +129,7 @@ If the M0 deployment itself is blocked, record the blocker and seek an approved 
 - [x] M0/M1 scope approved by the project owner on 2026-11-03.
 - [x] M0/M1 technical proposals in section 6 approved by the project owner on 2026-11-13 (`/kitchen/` route under `docs/` on GitHub Pages, a static page, plain HTML/CSS/JS with fictional data, no real data or services). This does not approve the later v1 architecture.
 - [x] This plan approved by the project owner on 2026-11-13. The backlog was approved the same day.
-- [ ] Production URL and GitHub Pages configuration verified.
+- [x] Production URL and GitHub Pages configuration verified on 2026-11-13: Pages publishes from `main`, `/docs` (checked through the GitHub API); the owner confirmed the `/kitchen/` URL loads on a real desktop and phone. See section 11.
 - [ ] OQ-16 resolved before any Squarespace change.
 - [ ] Remaining milestone scope, decisions, and buffered estimates approved before implementation.
 
@@ -139,7 +139,7 @@ If the M0 deployment itself is blocked, record the blocker and seek an approved 
 
 | Environment | URL | Source | Status |
 | --- | --- | --- | --- |
-| Production (GitHub Pages) — Brooklyn Community Kitchen entry shell | <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/> | `main` branch, `docs/kitchen/` | Returned HTTP 200 on 2026-11-13 (automated request). Not yet checked by a person on desktop and phone. |
+| Production (GitHub Pages) — Brooklyn Community Kitchen entry shell | <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/> | `main` branch, `docs/kitchen/` | Returned HTTP 200 on 2026-11-13 (automated request). Owner confirmed on 2026-11-13 that it loads on a real desktop and phone; browser and device models not recorded. |
 | Production (GitHub Pages) — existing SPUR landing page | <https://andrewmiaao.github.io/SPUR-AI-Research/> | `main` branch, `docs/` | Returned HTTP 200 on 2026-11-13; unchanged. |
 
 GitHub Pages publishes from the `main` branch, `/docs` folder (legacy branch build, HTTPS enforced). There is no staging environment; local preview is opening the files under `docs/` directly.
