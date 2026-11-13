@@ -5,7 +5,7 @@
 > **Input:** `SPECIFICATION.md` (what) + `PLAN.md` (order).
 > **Rule:** the top of `Now` is always the next thing you pick up.
 
-**Status:** Draft for owner review (generated 2026-11-13 from SPECIFICATION.md v0.2.2 and the draft PLAN.md).
+**Status:** Approved by the project owner on 2026-11-13 (generated 2026-11-13 from SPECIFICATION.md v0.2.2 and PLAN.md). Approval does not unblock any task: `Blocked by` entries and `U` estimates stand until their blockers are resolved.
 
 **How to read it**
 

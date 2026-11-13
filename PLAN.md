@@ -1,13 +1,13 @@
 # PLAN: Brooklyn Community Kitchen AI Assistant
 
-> **Status:** Draft for owner review  
+> **Status:** Approved by the project owner on 2026-11-13 (M2-M6 gates, decisions, and estimates remain open)  
 > **Planning date:** 2026-11-06  
-> **Inputs:** [CONCEPT-IDEA.md](./CONCEPT-IDEA.md) (owner-approved) and [SPECIFICATION.md](./SPECIFICATION.md) v0.2.2 (approved for planning; owner-directed corrections 2026-11-13)  
+> **Inputs:** [CONCEPT-IDEA.md](./CONCEPT-IDEA.md) (owner-approved) and [SPECIFICATION.md](./SPECIFICATION.md) v0.2.2 (owner-approved 2026-11-13; implementation readiness remains open)  
 > **Companion:** [BACKLOG.md](./BACKLOG.md) holds the ordered task list. This plan defines scope, sequence, proposed technical decisions, gates, and effort.
 
 ## 1. Purpose and planning status
 
-The project owner's M0/M1 scope was approved on 2026-11-03: deliver a production-hosted public entry shell and a fake-data volunteer-flow prototype. This document turns that scope into a timeboxed plan; it is still a draft and does not approve any unresolved product or technical decision.
+The project owner's M0/M1 scope was approved on 2026-11-03: deliver a production-hosted public entry shell and a fake-data volunteer-flow prototype. This document turns that scope into a timeboxed plan; the owner approved it on 2026-11-13, and that approval does not approve any unresolved product or technical decision.
 
 The five-week capacity provided for this plan is **10 hours per week, 50 hours total**. The owner's target is now to reach M6, including all Must stories and production acceptance, by the end of week five, while resolving the necessary decisions early. Treat this as an **aggressive, conditional target**, not a credible commitment yet: M2-M6 still contain unresolved product decisions and backlog tasks marked unestimated. No Must story is being removed or deferred from v1 by this target.
 
@@ -125,15 +125,15 @@ If the M0 deployment itself is blocked, record the blocker and seek an approved 
 ## 10. Review and approval
 
 - [x] Concept approved by the project owner.
-- [x] Specification v0.2.1 approved for planning; v0.2.2 applies owner-directed corrections (2026-11-13). Implementation readiness remains open.
+- [x] Specification v0.2.1 approved for planning; v0.2.2 applies owner-directed corrections (2026-11-13). The owner approved the v0.2.2 specification document on 2026-11-13. Implementation readiness remains open.
 - [x] M0/M1 scope approved by the project owner on 2026-11-03.
 - [x] M0/M1 technical proposals in section 6 approved by the project owner on 2026-11-13 (`/kitchen/` route under `docs/` on GitHub Pages, a static page, plain HTML/CSS/JS with fictional data, no real data or services). This does not approve the later v1 architecture.
-- [ ] This plan approved by the project owner.
+- [x] This plan approved by the project owner on 2026-11-13. The backlog was approved the same day.
 - [ ] Production URL and GitHub Pages configuration verified.
 - [ ] OQ-16 resolved before any Squarespace change.
 - [ ] Remaining milestone scope, decisions, and buffered estimates approved before implementation.
 
-**Current verdict:** `Draft for owner review; M6 by week 5 is an aggressive, conditional target at 10 hours/week. Full-v1 feasibility remains unverified pending early decisions and buffered estimates.`
+**Current verdict:** `Approved by the project owner on 2026-11-13; M6 by week 5 is an aggressive, conditional target at 10 hours/week. Full-v1 feasibility remains unverified pending early decisions and buffered estimates.`
 
 ## 11. Environments
 

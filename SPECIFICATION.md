@@ -8,7 +8,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | `Approved for planning` |
+| Status | `Approved` (project owner, 2026-11-13; open questions and implementation gates remain open) |
 | Concept doc | [CONCEPT-IDEA.md](./CONCEPT-IDEA.md) |
 | Author | Project owner with AI drafting assistance |
 | Reviewer(s) | Project owner |
@@ -403,7 +403,9 @@ The project does not build or redesign the existing Squarespace website. The ope
 - [ ] Nothing here contradicts the owner-approved revision of `CONCEPT-IDEA.md`.
 - [ ] Scope still fits the stated constraints — if not, say what gets cut.
 
-**Verdict:** `Approved for planning; implementation readiness remains open`
+**Owner approval:** On 2026-11-13 the project owner approved this specification (version 0.2.2) as a document. The approval does not resolve any open question in section 12, does not tick the checklist above, and does not clear the implementation gates; requirements that depend on an open question remain blocked.
+
+**Verdict:** `Approved by the project owner on 2026-11-13; implementation readiness remains open`
 
 **Reviewer notes:**
 
