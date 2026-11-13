@@ -136,7 +136,7 @@
         { id: "early", name: "7:30 a.m. shift", cap: 7, taken: 4 },
         { id: "service", name: "11:00 a.m. shift", cap: 9, taken: 9 }
       ];
-      let activeRequest = null;
+      let request = null; // { shiftId, status: "active" | "waitlisted" }
 
       const list = document.getElementById("shifts");
       const result = document.getElementById("result");
@@ -160,12 +160,15 @@
           add(line, "span", isFull ? "Full" : "Has space", "availability");
           add(line, "span", " · " + shift.taken + " of " + shift.cap + " sample places taken", "places");
 
-          if (activeRequest === shift.id) {
-            add(item, "p", "Your request for this shift is active.");
-          } else if (isFull) {
-            add(item, "p", "Joining the waitlist is not part of this demo yet.");
-          } else if (activeRequest === null) {
-            const button = add(item, "button", "Choose the " + shift.name);
+          if (request !== null && request.shiftId === shift.id) {
+            add(item, "p", request.status === "active"
+              ? "Your request for this shift is active."
+              : "Your request for this shift is on the waitlist.");
+          } else if (request === null) {
+            const label = isFull
+              ? "Join the waitlist for the " + shift.name
+              : "Choose the " + shift.name;
+            const button = add(item, "button", label);
             button.type = "button";
             button.addEventListener("click", () => choose(shift));
           }
@@ -173,11 +176,17 @@
       }
 
       function choose(shift) {
-        if (activeRequest !== null || shift.taken >= shift.cap) return;
-        shift.taken += 1;
-        activeRequest = shift.id;
+        if (request !== null) return;
+        if (shift.taken < shift.cap) {
+          shift.taken += 1;
+          request = { shiftId: shift.id, status: "active" };
+          result.textContent = "Your request is active: you have a place on the " + shift.name + ". (Sample only: nothing was saved or sent.)";
+        } else {
+          // Full: the request waits and the active count stays at the cap.
+          request = { shiftId: shift.id, status: "waitlisted" };
+          result.textContent = "The " + shift.name + " is full, so your request is on the waitlist. You do not have a place yet. (Sample only: nothing was saved or sent.)";
+        }
         render();
-        result.textContent = "Your request is active: you have a place on the " + shift.name + ". (Sample only: nothing was saved or sent.)";
         result.hidden = false;
         result.focus();
       }
