@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Demo of the Brooklyn Community Kitchen volunteer shift sign-up, using sample data only.">
+    <title>Volunteer shift sign-up demo | Brooklyn Community Kitchen</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #172b24;
+        background: #f5f8f6;
+      }
+
+      body {
+        box-sizing: border-box;
+        min-height: 100vh;
+        margin: 0;
+        padding: 1.5rem;
+      }
+
+      main {
+        box-sizing: border-box;
+        width: min(100%, 42rem);
+        margin: 0 auto;
+        padding: clamp(1.25rem, 5vw, 2.5rem);
+        border-radius: 1rem;
+        background: #fff;
+        box-shadow: 0 0.5rem 2rem rgb(23 43 36 / 8%);
+      }
+
+      .demo-label {
+        margin: 0 0 1.25rem;
+        padding: 0.75rem 1rem;
+        border: 2px solid #8a5a00;
+        border-radius: 0.5rem;
+        background: #fff6dd;
+        color: #4d3200;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.5rem, 6vw, 2.25rem);
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        line-height: 1.3;
+      }
+
+      p {
+        margin: 0.75rem 0 0;
+        font-size: 1.0625rem;
+        line-height: 1.6;
+      }
+
+      ul {
+        margin: 1.5rem 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        margin-top: 1rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid #b9c9c1;
+        border-radius: 0.75rem;
+      }
+
+      .availability {
+        font-weight: 600;
+      }
+
+      .places {
+        color: #3d5248;
+      }
+
+      button {
+        margin-top: 1rem;
+        padding: 0.75rem 1.25rem;
+        border: 0;
+        border-radius: 0.5rem;
+        background: #17603f;
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #0f4a30;
+      }
+
+      button:focus-visible,
+      #result:focus-visible {
+        outline: 3px solid #1a4fd6;
+        outline-offset: 3px;
+      }
+
+      #result {
+        margin-top: 1.5rem;
+        padding: 1rem 1.25rem;
+        border: 2px solid #17603f;
+        border-radius: 0.75rem;
+        background: #e9f5ee;
+      }
+
+      #result[hidden] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="demo-label"><strong>Demo with sample data.</strong> Nothing you choose here is saved or sent, and this is not a real sign-up.</p>
+
+      <h1>Volunteer shift sign-up</h1>
+      <p>Sample week: Saturday, December 5, 2026. Choose one shift.</p>
+
+      <ul id="shifts"></ul>
+
+      <div id="result" role="status" tabindex="-1" hidden></div>
+
+      <noscript><p>This demo needs JavaScript turned on to show the shifts.</p></noscript>
+    </main>
+
+    <script>
+      // Sample data only. Nothing is stored or sent; reloading the page starts again.
+      const shifts = [
+        { id: "early", name: "7:30 a.m. shift", cap: 7, taken: 4 },
+        { id: "service", name: "11:00 a.m. shift", cap: 9, taken: 9 }
+      ];
+      let activeRequest = null;
+
+      const list = document.getElementById("shifts");
+      const result = document.getElementById("result");
+
+      function add(parent, tag, text, className) {
+        const element = document.createElement(tag);
+        element.textContent = text;
+        if (className) element.className = className;
+        parent.appendChild(element);
+        return element;
+      }
+
+      function render() {
+        list.replaceChildren();
+        for (const shift of shifts) {
+          const item = add(list, "li", "");
+          add(item, "h2", shift.name);
+
+          const isFull = shift.taken >= shift.cap;
+          const line = add(item, "p", "");
+          add(line, "span", isFull ? "Full" : "Has space", "availability");
+          add(line, "span", " · " + shift.taken + " of " + shift.cap + " sample places taken", "places");
+
+          if (activeRequest === shift.id) {
+            add(item, "p", "Your request for this shift is active.");
+          } else if (isFull) {
+            add(item, "p", "Joining the waitlist is not part of this demo yet.");
+          } else if (activeRequest === null) {
+            const button = add(item, "button", "Choose the " + shift.name);
+            button.type = "button";
+            button.addEventListener("click", () => choose(shift));
+          }
+        }
+      }
+
+      function choose(shift) {
+        if (activeRequest !== null || shift.taken >= shift.cap) return;
+        shift.taken += 1;
+        activeRequest = shift.id;
+        render();
+        result.textContent = "Your request is active: you have a place on the " + shift.name + ". (Sample only: nothing was saved or sent.)";
+        result.hidden = false;
+        result.focus();
+      }
+
+      render();
+    </script>
+  </body>
+</html>
