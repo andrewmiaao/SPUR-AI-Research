@@ -111,6 +111,11 @@
         background: #e9f5ee;
       }
 
+      #result.rejected {
+        border-color: #a12622;
+        background: #fdecea;
+      }
+
       #result[hidden] {
         display: none;
       }
@@ -164,7 +169,7 @@
             add(item, "p", request.status === "active"
               ? "Your request for this shift is active."
               : "Your request for this shift is on the waitlist.");
-          } else if (request === null) {
+          } else {
             const label = isFull
               ? "Join the waitlist for the " + shift.name
               : "Choose the " + shift.name;
@@ -176,17 +181,30 @@
       }
 
       function choose(shift) {
-        if (request !== null) return;
+        if (request !== null) {
+          // One shift per volunteer per week: no second request is created.
+          const first = shifts.find((s) => s.id === request.shiftId);
+          const detail = request.status === "active" ? "" : " (on the waitlist)";
+          show("Request not added. You are already signed up for the " + first.name + " this week" + detail + ", and volunteers can request only one shift per week.", true);
+          return;
+        }
+        let message;
         if (shift.taken < shift.cap) {
           shift.taken += 1;
           request = { shiftId: shift.id, status: "active" };
-          result.textContent = "Your request is active: you have a place on the " + shift.name + ". (Sample only: nothing was saved or sent.)";
+          message = "Your request is active: you have a place on the " + shift.name + ". (Sample only: nothing was saved or sent.)";
         } else {
           // Full: the request waits and the active count stays at the cap.
           request = { shiftId: shift.id, status: "waitlisted" };
-          result.textContent = "The " + shift.name + " is full, so your request is on the waitlist. You do not have a place yet. (Sample only: nothing was saved or sent.)";
+          message = "The " + shift.name + " is full, so your request is on the waitlist. You do not have a place yet. (Sample only: nothing was saved or sent.)";
         }
         render();
+        show(message, false);
+      }
+
+      function show(message, rejected) {
+        result.textContent = message;
+        result.classList.toggle("rejected", rejected);
         result.hidden = false;
         result.focus();
       }
