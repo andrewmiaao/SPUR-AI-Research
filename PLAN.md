@@ -134,3 +134,12 @@ If the M0 deployment itself is blocked, record the blocker and seek an approved 
 - [ ] Remaining milestone scope, decisions, and buffered estimates approved before implementation.
 
 **Current verdict:** `Draft for owner review; M6 by week 5 is an aggressive, conditional target at 10 hours/week. Full-v1 feasibility remains unverified pending early decisions and buffered estimates.`
+
+## 11. Environments
+
+| Environment | URL | Source | Status |
+| --- | --- | --- | --- |
+| Production (GitHub Pages) — Brooklyn Community Kitchen entry shell | <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/> | `main` branch, `docs/kitchen/` | Returned HTTP 200 on 2026-11-13 (automated request). Not yet checked by a person on desktop and phone. |
+| Production (GitHub Pages) — existing SPUR landing page | <https://andrewmiaao.github.io/SPUR-AI-Research/> | `main` branch, `docs/` | Returned HTTP 200 on 2026-11-13; unchanged. |
+
+GitHub Pages publishes from the `main` branch, `/docs` folder (legacy branch build, HTTPS enforced). There is no staging environment; local preview is opening the files under `docs/` directly.
