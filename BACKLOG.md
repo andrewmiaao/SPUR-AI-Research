@@ -77,8 +77,7 @@ Every implementation task here is `U` until T-011 is done. Nothing below is auth
 
 | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | ---: | --- |
-| T-006 | Record the owner's decision on where the sign-up entry point goes on the Squarespace site, the method (link or embed), access and cost. | FR-17 | U | OQ-16 |
-| T-007 | Add the approved entry point to the Squarespace site, pointing at the production sign-up flow. | FR-17 | U | T-006 |
+| T-007 | Add the approved entry point to the Squarespace site, pointing at the production sign-up flow. | FR-17 | U | T-014 |
 | T-008 | Walk through the sign-up flow starting from the Squarespace site and record the result. | FR-17, US-02 | U | T-007 |
 
 ### M2: schedule and sign-up core
@@ -167,3 +166,4 @@ Ideas from CONCEPT-IDEA.md that are outside v1. None is approved or scheduled.
 | T-005a | Prototype state 1: the page lists the two public shift blocks (7:30 a.m. and 11:00 a.m.) from hard-coded fictional data, and choosing one with space shows the request as active. | US-02, FR-03 (prototype only) | 2026-11-13 | Built at `docs/kitchen/demo/index.html`. Owner confirmed the acceptance criteria are met and approved the page location. Sample caps set by the owner for the demo: 7 for the 7:30 a.m. shift and 9 for the 11:00 a.m. shift. |
 | T-005b | Prototype state 2: choosing a shift block that is already full shows the request as waitlisted. | US-02, FR-03 (prototype only) | 2026-11-13 | Choosing the full 11:00 a.m. shift shows the request as waitlisted and the count stays at 9 of 9. Owner confirmed it works in a local check; not yet verified at the deployed URL (T-005d). |
 | T-005c | Prototype state 3: a second request in the same week is rejected with a plain-language message. | US-02, FR-04 (prototype only) | 2026-11-13 | Merged in pull request 3 and deployed. Checked at the production URL in a desktop browser: a second request is rejected with a message naming the first shift, counts do not change, and a reload starts the demo again with no saved request, no cookies and no browser storage. Real-phone check remains in T-005d. |
+| T-006 | Record the owner's decision on where the sign-up entry point goes on the Squarespace site, the method (link or embed), access and cost. | FR-17 | 2026-11-16 | Owner decided: a link or button on the existing volunteer page; a board member with existing access makes the change; $0 only. Recorded in PLAN.md §6 and SPECIFICATION.md v0.2.3 (OQ-16). Exact page, editor and link wording not yet recorded. |
