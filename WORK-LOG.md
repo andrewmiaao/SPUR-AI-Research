@@ -31,6 +31,8 @@ Time worked earlier this week, if any, has not yet been reported. Actual hours a
 | --- | --- | --- | --- | --- |
 | 2026-11-13 | T-004 (M0) | <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/> returned HTTP 200 and served the kitchen page; the site root still served the SPUR landing page. | Automated request | — |
 | 2026-11-13 | T-004 (M0) | The `/kitchen/` URL loads on a real desktop and a real phone. | Project owner (reported) | Reported the same day: Google Chrome on desktop and Safari on phone; readable without horizontal scrolling on both. Device models not reported. |
+| 2026-11-16 | T-005d (M1) | At <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/demo/>: active, waitlisted and second-request-rejected states from a clean load; reload starts clean; no network request after the page loaded; live source has no name, email or phone number and matches `main`. | Claude, in the Claude desktop app's built-in browser | Layout at phone width (the browser pane was not visible during the run). |
+| 2026-11-16 | T-005d (M1) | All three states work at the production URL in Safari on iPhone. | Project owner (reported) | iPhone model; a desktop run by the owner. |
 
 ## How to update
 
