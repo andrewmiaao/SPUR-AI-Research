@@ -18,11 +18,12 @@
 
 ## Now (M0 and M1: demo production release, target 2026-11-21)
 
-Base estimate remaining: M0 0 h (complete 2026-11-13), M1 1 h (1 h before the 50% buffer). Fictional data only. No persistence, no form submission, no external service, no cost.
+Base estimate remaining: M0 0 h (complete 2026-11-13), M1 0 h (all tasks done 2026-11-16). Fictional data only. No persistence, no form submission, no external service, no cost.
 
 | # | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | --- | ---: | --- |
-| 1 | T-009 | Walk the owner through the demo at the production URL in under one minute; record feedback, blockers and new decisions in WORK-LOG.md. | US-02 (prototype only) | 1 | T-005d |
+
+No M0 or M1 task remains. The next work is the planning gate under `Next` (T-010, T-011).
 
 ### Acceptance criteria
 
@@ -154,6 +155,7 @@ Ideas from CONCEPT-IDEA.md that are outside v1. None is approved or scheduled.
 - Online donation acceptance, if the board wants it (OQ-01).
 - Measures of success beyond completing a full operation (OQ-11).
 - An email step before the shift choice, with a silent backend check of whether the address is on the volunteer list. A fake-data prototype exists in pull request 4 (branch `demo-email-step`), unmerged. Parked by the owner on 2026-11-16; it has no specification requirement yet.
+- Make the demo more of a form, with fields such as name and job preferences (owner idea from the T-009 walkthrough, 2026-11-16). The v1 public form already requires name, email, phone, shift preferences and the weekly choice (FR-15, backlog T-021); this idea is about showing those fields in the prototype with sample data.
 
 ## Done
 
@@ -167,4 +169,5 @@ Ideas from CONCEPT-IDEA.md that are outside v1. None is approved or scheduled.
 | T-005b | Prototype state 2: choosing a shift block that is already full shows the request as waitlisted. | US-02, FR-03 (prototype only) | 2026-11-13 | Choosing the full 11:00 a.m. shift shows the request as waitlisted and the count stays at 9 of 9. Owner confirmed it works in a local check; not yet verified at the deployed URL (T-005d). |
 | T-005c | Prototype state 3: a second request in the same week is rejected with a plain-language message. | US-02, FR-04 (prototype only) | 2026-11-13 | Merged in pull request 3 and deployed. Checked at the production URL in a desktop browser: a second request is rejected with a message naming the first shift, counts do not change, and a reload starts the demo again with no saved request, no cookies and no browser storage. Real-phone check remains in T-005d. |
 | T-005d | Deploy the prototype; confirm on desktop and phone that all three states work from a clean page load and that the page sends no data anywhere. | US-02 (prototype only) | 2026-11-16 | Deployed at <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/demo/>. All three states ran from a clean load: on phone by the owner (Safari on iPhone), on desktop by Claude in the Claude desktop app's built-in browser. No request was sent after the page loaded, and the live source has no name, email or phone number. The owner has not reported a desktop run of their own. Details in WORK-LOG.md. |
+| T-009 | Walk the owner through the demo at the production URL in under one minute; record feedback, blockers and new decisions in WORK-LOG.md. | US-02 (prototype only) | 2026-11-16 | Owner ran the three-state walkthrough at the production URL in about 10 seconds. Feedback, blockers (none) and decisions (none) recorded in WORK-LOG.md; one new idea added under `Later`. |
 | T-006 | Record the owner's decision on where the sign-up entry point goes on the Squarespace site, the method (link or embed), access and cost. | FR-17 | 2026-11-16 | Owner decided: a link or button on the existing volunteer page; a board member with existing access makes the change; $0 only. Recorded in PLAN.md §6 and SPECIFICATION.md v0.2.3 (OQ-16). Exact page, editor and link wording not yet recorded. |

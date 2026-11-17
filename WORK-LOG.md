@@ -34,6 +34,18 @@ Time worked earlier this week, if any, has not yet been reported. Actual hours a
 | 2026-11-16 | T-005d (M1) | At <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/demo/>: active, waitlisted and second-request-rejected states from a clean load; reload starts clean; no network request after the page loaded; live source has no name, email or phone number and matches `main`. | Claude, in the Claude desktop app's built-in browser | Layout at phone width (the browser pane was not visible during the run). |
 | 2026-11-16 | T-005d (M1) | All three states work at the production URL in Safari on iPhone. | Project owner (reported) | iPhone model; a desktop run by the owner. |
 
+## Owner walkthroughs and feedback
+
+### 2026-11-16: M1 demo walkthrough (T-009)
+
+Run by the project owner at <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/demo/>. All entries below are as reported by the owner.
+
+- **Time:** about 10 seconds. The owner reported no setup steps; the device used for this run was not reported.
+- **Feedback:** the owner expected M1 to be a more fleshed-out idea with more features, but said the result is good.
+- **Blockers:** none reported.
+- **Decisions:** none reported.
+- **New ideas:** make the demo more of a form, with fields such as name and job preferences. Added under `Later` in BACKLOG.md.
+
 ## How to update
 
 After a work session, report the date (or “today”), milestone/task, and time spent.
