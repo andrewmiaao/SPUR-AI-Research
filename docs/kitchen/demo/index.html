@@ -81,6 +81,60 @@
         color: #3d5248;
       }
 
+      label {
+        display: block;
+        margin-top: 1.5rem;
+        font-size: 1.0625rem;
+        font-weight: 600;
+      }
+
+      .hint {
+        margin-top: 0.25rem;
+        color: #3d5248;
+        font-size: 1rem;
+      }
+
+      input[type="email"] {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 0.75rem;
+        border: 2px solid #5b7267;
+        border-radius: 0.5rem;
+        font: inherit;
+        font-size: 1.0625rem;
+      }
+
+      input[type="email"][aria-invalid="true"] {
+        border-color: #a12622;
+      }
+
+      .error {
+        color: #a12622;
+        font-weight: 600;
+      }
+
+      .error[hidden],
+      section[hidden] {
+        display: none;
+      }
+
+      .signed-in-as {
+        overflow-wrap: anywhere;
+      }
+
+      button.secondary {
+        margin-top: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        border: 2px solid #17603f;
+        background: #fff;
+        color: #17603f;
+      }
+
+      button.secondary:hover {
+        background: #e9f5ee;
+      }
+
       button {
         margin-top: 1rem;
         padding: 0.75rem 1.25rem;
@@ -98,6 +152,8 @@
       }
 
       button:focus-visible,
+      input:focus-visible,
+      h1:focus-visible,
       #result:focus-visible {
         outline: 3px solid #1a4fd6;
         outline-offset: 3px;
@@ -125,14 +181,31 @@
     <main>
       <p class="demo-label"><strong>Demo with sample data.</strong> Nothing you choose here is saved or sent, and this is not a real sign-up.</p>
 
-      <h1>Volunteer shift sign-up</h1>
-      <p>Sample week: Saturday, December 5, 2026. Choose one shift.</p>
+      <section id="step-email">
+        <h1 id="email-heading" tabindex="-1">Volunteer shift sign-up</h1>
+        <p>Step 1 of 2. Enter your email address to start.</p>
 
-      <ul id="shifts"></ul>
+        <form id="email-form" novalidate>
+          <label for="email">Email address</label>
+          <p class="hint" id="email-hint">For this demo, type a made-up address such as sample.volunteer@example.org. It is not sent or saved.</p>
+          <input type="email" id="email" name="email" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="email-hint email-error" required>
+          <p class="error" id="email-error" role="alert" hidden></p>
+          <button type="submit">Continue</button>
+        </form>
+      </section>
 
-      <div id="result" role="status" tabindex="-1" hidden></div>
+      <section id="step-shifts" hidden>
+        <h1 id="shifts-heading" tabindex="-1">Choose a shift</h1>
+        <p>Step 2 of 2. Sample week: Saturday, December 5, 2026. Choose one shift.</p>
+        <p class="signed-in-as">Signing up as <strong id="current-email"></strong></p>
+        <button type="button" class="secondary" id="change-email">Use a different email</button>
 
-      <noscript><p>This demo needs JavaScript turned on to show the shifts.</p></noscript>
+        <ul id="shifts"></ul>
+
+        <div id="result" role="status" tabindex="-1" hidden></div>
+      </section>
+
+      <noscript><p>This demo needs JavaScript turned on to work.</p></noscript>
     </main>
 
     <script>
@@ -141,8 +214,24 @@
         { id: "early", name: "7:30 a.m. shift", cap: 7, taken: 4 },
         { id: "service", name: "11:00 a.m. shift", cap: 9, taken: 9 }
       ];
-      let request = null; // { shiftId, status: "active" | "waitlisted" }
 
+      // Pretend "backend": fictional addresses standing in for the volunteer list.
+      const sampleVolunteerList = ["sample.volunteer@example.org", "returning.helper@example.org"];
+
+      // This week's requests, keyed by email: email -> { shiftId, status: "active" | "waitlisted" }
+      const requests = new Map();
+
+      // The visitor's current step-1 answer: { email, onFile }.
+      // onFile is the silent check result. It is never shown on this page; in the
+      // real system only operators would see it (specification FR-15).
+      let current = null;
+      let request = null;
+
+      const stepEmail = document.getElementById("step-email");
+      const stepShifts = document.getElementById("step-shifts");
+      const emailForm = document.getElementById("email-form");
+      const emailInput = document.getElementById("email");
+      const emailError = document.getElementById("email-error");
       const list = document.getElementById("shifts");
       const result = document.getElementById("result");
 
@@ -192,10 +281,12 @@
         if (shift.taken < shift.cap) {
           shift.taken += 1;
           request = { shiftId: shift.id, status: "active" };
+          requests.set(current.email, request);
           message = "Your request is active: you have a place on the " + shift.name + ". (Sample only: nothing was saved or sent.)";
         } else {
           // Full: the request waits and the active count stays at the cap.
           request = { shiftId: shift.id, status: "waitlisted" };
+          requests.set(current.email, request);
           message = "The " + shift.name + " is full, so your request is on the waitlist. You do not have a place yet. (Sample only: nothing was saved or sent.)";
         }
         render();
@@ -209,7 +300,39 @@
         result.focus();
       }
 
-      render();
+      emailForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Nothing is submitted anywhere.
+        // Demo assumption: ignore surrounding spaces and capital letters.
+        const email = emailInput.value.trim().toLowerCase();
+        if (email === "" || !emailInput.validity.valid) {
+          emailError.textContent = "Enter an email address in the format name@example.org.";
+          emailError.hidden = false;
+          emailInput.setAttribute("aria-invalid", "true");
+          emailInput.focus();
+          return;
+        }
+        emailError.hidden = true;
+        emailInput.removeAttribute("aria-invalid");
+
+        current = { email: email, onFile: sampleVolunteerList.includes(email) };
+        request = requests.get(email) || null;
+
+        document.getElementById("current-email").textContent = email;
+        result.hidden = true;
+        render();
+        stepEmail.hidden = true;
+        stepShifts.hidden = false;
+        document.getElementById("shifts-heading").focus();
+      });
+
+      document.getElementById("change-email").addEventListener("click", () => {
+        current = null;
+        request = null;
+        emailInput.value = "";
+        stepShifts.hidden = true;
+        stepEmail.hidden = false;
+        emailInput.focus();
+      });
     </script>
   </body>
 </html>
