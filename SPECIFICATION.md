@@ -12,8 +12,8 @@
 | Concept doc | [CONCEPT-IDEA.md](./CONCEPT-IDEA.md) |
 | Author | Project owner with AI drafting assistance |
 | Reviewer(s) | Project owner |
-| Version | 0.2.3 |
-| Last updated | 2026-11-16 |
+| Version | 0.2.5 |
+| Last updated | 2026-11-18 |
 
 ---
 
@@ -36,7 +36,7 @@ The first release is an operational tool for the five operating board members an
 3. Online donation processing is not included in this draft; whether it is wanted remains open.
 4. Building, replacing, or redesigning the existing Squarespace website.
 
-**Constraints:** The working planning assumption is 7–12 hours per week. The November 21, 2026 target is a demo production release: the M0/M1 demo (the live entry shell plus the fake-data volunteer flow) deployed to and reachable at a production URL. It is a target to aim for, not the full v1 release and not proof of a full kitchen operation. The working project-budget assumption is a low-to-zero budget with a planning cap below $300 until the board approves a higher limit. Success for the prototype is measured by whether the workflow is operational and reviewable by the board. The kitchen will be in operations, while backend functions are still being improved and may not be completely implemented. All six operational capabilities remain in first-release scope; feasibility against any production date and the budget still needs review, and no scope reduction is assumed.
+**Constraints:** Planned capacity is 10 hours per week (PLAN.md §3). The November 21, 2026 target is a demo production release: the M0/M1 demo (the live entry shell plus the fake-data volunteer flow) deployed to and reachable at a production URL. It is a target to aim for, not the full v1 release and not proof of a full kitchen operation. The project budget is $0 (owner decision, 2026-11-18; OQ-09). Success for the prototype is measured by whether the workflow is operational and reviewable by the board. The kitchen will be in operations, while backend functions are still being improved and may not be completely implemented. All six operational capabilities remain in first-release scope. The feasibility review (backlog T-011, 2026-11-18) found the original five-week target infeasible; the owner moved the v1 (M6) target to February 14, 2027, at 10 hours per week with no scope reduction (PLAN.md §5).
 
 ## 3. Users and permissions
 
@@ -158,7 +158,7 @@ All operator screens require an authenticated operator through the approved Goog
 - **Key elements:** Donation amount, donor name, donor email, and payment-system reference; expense date, amount, and category; report period, spending totals, and budget comparison. Donation records do not include the identity of the operator who entered them because the system should receive payment events automatically. Other donor fields, expense fields, categories, budget periods, and report breakdowns remain open.
 - **Actions available:** Review incoming donations synced from the payment system; enter and view an expense; request a spending report and budget report.
 - **Permissions:** All authenticated operators may access and edit financial data.
-- **Empty state:** Show no donations/no expenses as applicable. If there is no entered budget for the selected period, explain that the budget comparison cannot yet be generated; do not substitute the nonprofit's approximately $30,000 in funds or the below-$300 project-budget assumption.
+- **Empty state:** Show no donations/no expenses as applicable. If there is no entered budget for the selected period, explain that the budget comparison cannot yet be generated; do not substitute the nonprofit's approximately $30,000 in funds or the project's own $0 budget.
 - **Error state:** Identify failed saves or report generation. A report that could not be calculated must not be presented as a valid zero.
 
 ### 6.7 Compliance video / orientation
@@ -332,13 +332,13 @@ This project does not maintain a formal onboarding or training completion workfl
 | Devices / browsers | No supported device/browser list has been agreed (OQ-13). Final acceptance is blocked until target devices/browsers are confirmed and the signup flow is verified on them. |
 | Privacy | Store only volunteer fields explicitly identified in the concept until the owner approves additional data. Do not expose one volunteer's contact details or requests to another volunteer. Retention and deletion rules are unresolved. |
 | Security | Operator-only screens and financial data require an approved authentication approach before real data is used. All operators have the same access/edit permissions. Secrets must not be committed to the repository. Public signup must not expose operator records. A public submission must not modify a volunteer profile; only authenticated operators may. As chosen by the owner, a public submission is matched to an existing record by the submitted email alone, without separate proof of control of that email. |
-| Cost | Working assumption is a low-to-zero budget with a planning cap below $300 until the board approves a higher limit. Recurring service charges must be confirmed against that limit before adoption. |
+| Cost | The project budget is $0 (owner decision, 2026-11-18; OQ-09). No service, plan upgrade or add-on with a one-time or recurring charge may be adopted; any requirement that would need one returns to the owner and board. |
 | Availability | No uptime target has been agreed. Scheduled email failures must be visible to operators; manual follow-up process remains to be decided. |
 | Data integrity | Capacity checks and financial record saves must not silently fail or produce success-shaped results for records that were not saved. |
 
 ## 10. External dependencies
 
-All required external services are assumed to use the approved Google Workspace environment. The project does not add a separate platform or vendor stack beyond the board-approved Google Workspace setup and existing operational tools already available to the team.
+All required external services use Google Workspace (owner decision, 2026-11-18), with the v1 application built in Google Apps Script. The only exceptions the owner has approved are the existing Squarespace website (entry-point link) and Zeffy (donations). No other platform or vendor is added unless the owner decides so.
 
 | Service | Used for | Account needed | Cost | Fallback if unavailable |
 | --- | --- | --- | --- | --- |
@@ -346,7 +346,7 @@ All required external services are assumed to use the approved Google Workspace 
 | Google Workspace identity / access control | Restricting operator-only screens and operator access to records | Yes; Google Workspace authentication and sharing model | Included in the approved Google Workspace environment | Do not expose private or financial records; pause operator writes until access is restored. |
 | Google Sheets (master spreadsheet) | Store the master volunteer profile data and operational records maintained by operators | Yes; board-approved Google Workspace account and spreadsheet sharing model | Included in the approved Google Workspace environment; expected to fit the low-budget plan | Do not claim a form submission succeeded if the spreadsheet update failed; recovery and notification process need confirmation. |
 | Existing Squarespace website | Provide the public entry point to approved operational flows, starting with volunteer sign-up | The site already exists; a board member with existing Squarespace access makes the change; project contributors get no access (OQ-16 decision, 2026-11-16) | No new website purchase is assumed; integration capabilities or costs must be checked against the approved budget | Give the public operational flow a direct URL and have the owner add an approved link when site access/integration is available; keep signup decisions and records in the operational system. |
-| Google Workspace / donor payment integration | Only if online donation acceptance is approved and the payment workflow is configured in the approved Google Workspace-supported environment | Undecided; depends on the board-approved donation system configuration | Unknown; must fit approved budget | Not applicable unless online donation acceptance is added to scope. |
+| Zeffy (donation payment system) | Source of incoming donation records for FR-08 (owner decision, 2026-11-18) | Yes; a Zeffy account for the kitchen (whether one exists is not recorded) | Must cost the project $0; not yet verified | How donations reach Google Sheets automatically is not yet decided or verified; never show a missing sync as zero donations. |
 
 ## 11. Definition of done (for the whole v1)
 
@@ -369,7 +369,7 @@ The project does not build or redesign the existing Squarespace website. The ope
 
 | ID | Question | Owner | Needed by |
 | --- | --- | --- | --- |
-| OQ-01 | Should the donation capability accept online donations as well as record donations entered by board members? What donor information beyond donor identity should be stored? | Project owner | Before donation requirements and external services are finalized |
+| OQ-01 | Should the donation capability accept online donations as well as record donations entered by board members? What donor information beyond donor identity should be stored? (The payment system was decided on 2026-11-18: Zeffy. These two questions remain open.) | Project owner | Before donation requirements and external services are finalized |
 | OQ-02 | What onboarding/training content, steps, completion tracking, and volunteer access are required? | Project owner | Before US-05 can be implemented or accepted |
 | OQ-03 | Which expense categories, expense fields, reporting periods, budget periods, report breakdowns, and currency should accounting use? Who sets/updates the budget? | Project owner / board | Before accounting screens and report acceptance criteria are finalized |
 | OQ-04 | Should the system reject a cap reduction that would leave more active sign-ups than the new cap, or should it use another resolution? | Project owner / kitchen operators | Before cap editing is implemented |
@@ -377,12 +377,12 @@ The project does not build or redesign the existing Squarespace website. The ope
 | OQ-06 | What should the Tuesday signup email and Friday confirmation contain? | Project owner | Before scheduled email behavior is finalized |
 | OQ-07 | What privacy, retention, and deletion rules apply to volunteer, donor, and accounting data? | Project owner / board | Before real data is stored |
 | OQ-08 | How should operators authenticate, and how should operator accounts be added, changed, or removed? All operators may access and edit all data. | Project owner / board | Before access control is implemented |
-| OQ-09 | What project budget will the board approve? The current working assumption is a low-to-zero budget with a planning cap below $300 until the board approves a higher limit; the nonprofit's approximately $30,000 in funds is not the project budget. | Project owner / board | Before selecting paid services or committing to recurring costs |
+| OQ-09 | **Resolved on 2026-11-18.** Decision: the project budget is $0. No paid service, plan upgrade, paid add-on, domain or paid tier; any work that would need a cost stops and returns to the owner and board. The nonprofit's approximately $30,000 in funds is not the project budget. | Project owner / board | Resolved |
 | OQ-10 | What checklist defines completion of a “full operation,” and what is the first successful demonstration? | Project owner / kitchen operators | Before release acceptance |
 | OQ-11 | What additional measurable outcomes, if any, matter beyond completing a full operation and demonstrating the capabilities? | Project owner / board | Before final success criteria are approved |
 | OQ-12 | What behavior should the system use for suspected duplicate donation/expense records and email failures, including missed scheduled jobs, partial batches, retries, and preventing duplicate sends? | Project owner / board | Before financial and email edge cases are finalized |
 | OQ-13 | Which devices/browsers and accessibility standard should v1 support? | Project owner | Before final non-functional acceptance criteria |
-| OQ-15 | Which spreadsheet service will be used for the master spreadsheet? Google Workspace is being considered. Operators and helpers should have access. | Project owner | Before spreadsheet access is configured |
+| OQ-15 | **Resolved on 2026-11-18.** Decision: Google Sheets, within Google Workspace, which is used for the entire system. Still open: who owns the existing master spreadsheet and how operators and the helper get access (backlog T-018). | Project owner | Access by T-018 |
 | OQ-16 | **Resolved for volunteer sign-up on 2026-11-16.** Decision: a link or button on the Squarespace site's existing volunteer page, opening the sign-up page at its own address; a board member with existing access makes the change; $0 only, and any cost returns to the board first. Still open: where any other operational flow would appear, since none has an approved entry point. | Project owner / board | Before another flow is connected to the website |
 
 ## Planning approval and implementation-readiness
@@ -395,7 +395,11 @@ The project does not build or redesign the existing Squarespace website. The ope
 
 **Revision 0.2.3:** Records the owner's decision on OQ-16 for the volunteer sign-up flow, dated 2026-11-16 (backlog T-006). (1) Location: the Squarespace site's existing volunteer page. (2) Method: a link or button that opens the sign-up page at its own address; no embed. (3) Access: a board member with existing Squarespace access makes the change; no new account or contributor seat. (4) Cost: $0 only; if the change turns out to need a plan upgrade or paid add-on, work stops and returns to the board. Not yet recorded: the exact page name or address, which board member makes the change, and the link wording. No Squarespace change has been made, and FR-17 is not accepted until the production sign-up flow exists and the entry point is added and walked through (T-007, T-008). No other open question was resolved by this revision.
 
-**Implementation gates:** US-05 is not satisfied by FR-11's “not configured” state; onboarding must be defined and implemented before a release can claim all Must stories complete. Donation, expense, and report acceptance remains blocked until OQ-01/OQ-03 specify required fields, currency, periods, and expected example results. Real-data use remains blocked on OQ-07/OQ-08/OQ-15 and the explicit public-profile risk review above. Email automation acceptance remains blocked on approved message content and failure/retry behavior (OQ-05/OQ-06/OQ-12). Final accessibility acceptance remains blocked on OQ-13. A decision to proceed with a prototype or partial milestone does not close these v1 gates.
+**Revision 0.2.4:** Records the owner's decisions dated 2026-11-18 (backlog T-010). (1) OQ-09: the project budget is $0; the earlier working cap below $300 is replaced. (2) Google Workspace is used for everything unless the owner says otherwise. (3) OQ-15: the master spreadsheet and operational records use Google Sheets. (4) The v1 application is a Google Apps Script web app (details in PLAN.md §6). (5) The donation payment system is Zeffy; OQ-01's questions on donor fields and board-entered donations stay open, and the Zeffy-to-Sheets connection is not yet decided or verified. Not yet decided: operator sign-in (OQ-08) and spreadsheet ownership and access (T-018). No other open question was resolved by this revision.
+
+**Revision 0.2.5:** Records the T-011 feasibility result and the moved v1 target (2026-11-18). No open question was resolved by this revision.
+
+**Implementation gates:** US-05 is not satisfied by FR-11's “not configured” state; onboarding must be defined and implemented before a release can claim all Must stories complete. Donation, expense, and report acceptance remains blocked until OQ-01/OQ-03 specify required fields, currency, periods, and expected example results. Real-data use remains blocked on OQ-07/OQ-08, spreadsheet ownership and access (T-018) and the explicit public-profile risk review above. Email automation acceptance remains blocked on approved message content and failure/retry behavior (OQ-05/OQ-06/OQ-12). Final accessibility acceptance remains blocked on OQ-13. A decision to proceed with a prototype or partial milestone does not close these v1 gates.
 
 - [ ] Every `Must` story has at least one functional requirement.
 - [ ] Every functional requirement has testable acceptance criteria.
@@ -411,4 +415,4 @@ The project does not build or redesign the existing Squarespace website. The ope
 
 **Reviewer notes:**
 
-> The owner has resolved the overlapping-signup, pending-spreadsheet-capacity, email-only profile-matching, and end-time decisions for pickup and soup/unloading. Detailed accounting, onboarding, privacy, remaining schedule, withdrawal, and email details remain open; do not treat blocked requirements as implementation-ready until the owner resolves them. Confirm feasibility against the still-unapproved project budget before selecting services.
+> The owner has resolved the overlapping-signup, pending-spreadsheet-capacity, email-only profile-matching, and end-time decisions for pickup and soup/unloading. Detailed accounting, onboarding, privacy, remaining schedule, withdrawal, and email details remain open; do not treat blocked requirements as implementation-ready until the owner resolves them. The project budget is $0 (OQ-09, 2026-11-18); confirm each service fits within free limits before relying on it.
