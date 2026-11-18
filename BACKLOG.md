@@ -10,7 +10,7 @@
 **How to read it**
 
 - **Ref** is the specification ID the task serves (US-xx / FR-xx), or `Infra` for infrastructure and project-gate work.
-- **Est.** is base effort in hours, before the plan's 50% buffer. `U` means unestimated: the task cannot be sized until its blocker is resolved.
+- **Est.** is base effort in hours, before the plan's 50% buffer. `U` means unestimated: the task cannot be sized until its blocker is resolved. `p` means provisional: the estimate assumes a simple answer to an open question and must be re-estimated when that question is answered. The M2–M6 estimates were drafted by Claude (T-011) and approved by the owner on 2026-11-18.
 - **Blocked by** names the open question (OQ-xx, SPECIFICATION.md §12) or task that must be closed first. A blocked task must not be started by guessing the answer.
 - Task IDs match the references in PLAN.md §4. IDs are not in strict numeric order; the order of the rows is the priority.
 
@@ -23,7 +23,7 @@ Base estimate remaining: M0 0 h (complete 2026-11-13), M1 0 h (all tasks done 20
 | # | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | --- | ---: | --- |
 
-No M0 or M1 task remains. The next work is the planning gate under `Next` (T-010, T-011).
+No M0 or M1 task remains. The planning gate is done (T-010, T-011). The owner moved the M6 target to February 14, 2027 (PLAN.md §5). T-012's blocker (T-010) is done and the owner approved the estimates on 2026-11-18. Before M2 code is written, the free-limit checks due before M2 must be done (PLAN.md §8).
 
 ### Acceptance criteria
 
@@ -62,83 +62,76 @@ No M0 or M1 task remains. The next work is the planning gate under `Next` (T-010
 
 ---
 
-## Next (M2 to M6: gated, not yet estimated)
+## Next (M2 to M6: gated, estimated 2026-11-18)
 
-Every implementation task here is `U` until T-011 is done. Nothing below is authorized by the M0/M1 approval.
-
-### Planning gate (plan week 1 checkpoint)
-
-| ID | Task | Ref | Est. | Blocked by |
-| --- | --- | --- | ---: | --- |
-| T-010 | Record the owner's decisions on the application and storage approach and on the project budget as approved entries in PLAN.md §6. | Infra | U | OQ-09, OQ-15 |
-| T-011 | Give every `U` task below a base estimate plus 50% buffer, compare the total with the 32-hour envelope, and record the feasibility verdict in PLAN.md §3. | Infra | 2 | T-010 |
+Draft base estimates total 74 h (111 h with the 50% buffer), more than the original 32-hour envelope (PLAN.md §3). On 2026-11-18 the owner moved the M6 target to February 14, 2027 at 10 hours/week with no scope change (PLAN.md §5). Estimates are not approval: nothing below is authorized by the M0/M1 approval, and `Blocked by` entries still stand.
 
 ### Squarespace entry point
 
 | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | ---: | --- |
-| T-007 | Add the approved entry point to the Squarespace site, pointing at the production sign-up flow. | FR-17 | U | T-014 |
-| T-008 | Walk through the sign-up flow starting from the Squarespace site and record the result. | FR-17, US-02 | U | T-007 |
+| T-007 | Add the approved entry point to the Squarespace site, pointing at the production sign-up flow. | FR-17 | 0.5 | T-014 |
+| T-008 | Walk through the sign-up flow starting from the Squarespace site and record the result. | FR-17, US-02 | 0.5 | T-007 |
 
 ### M2: schedule and sign-up core
 
 | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | ---: | --- |
-| T-012 | Operators can create, save and reopen a week's schedule with task names, start and end times, and caps. | FR-02, US-07 | U | T-010 |
-| T-042 | Record the owner's decision on cap reductions below the active count, then implement cap editing with that rule. | FR-02 | U | OQ-04, T-012 |
-| T-013 | Operators can publish a schedule; an unpublished week's form link shows no tasks and accepts no sign-ups. | FR-13 | U | T-012 |
-| T-014 | The public form saves a sign-up as active until the cap is reached, then as waitlisted in request order, including simultaneous requests for the last place, and closes Thursday 6:00 p.m. Eastern. | FR-03, US-02 | U | T-013 |
-| T-015 | The form rejects a second request from the same volunteer in the same week and explains why. | FR-04, US-02 | U | T-014 |
-| T-043 | Operators see a weekly summary with each task's time, cap, active count and waitlist count. | FR-12, US-07 | U | T-014 |
+| T-012 | Operators can create, save and reopen a week's schedule with task names, start and end times, and caps. | FR-02, US-07 | 6 | T-010 |
+| T-042 | Record the owner's decision on cap reductions below the active count, then implement cap editing with that rule. | FR-02 | 1.5 p | OQ-04, T-012 |
+| T-013 | Operators can publish a schedule; an unpublished week's form link shows no tasks and accepts no sign-ups. | FR-13 | 2 | T-012 |
+| T-014 | The public form saves a sign-up as active until the cap is reached, then as waitlisted in request order, including simultaneous requests for the last place, and closes Thursday 6:00 p.m. Eastern. | FR-03, US-02 | 5 | T-013 |
+| T-015 | The form rejects a second request from the same volunteer in the same week and explains why. | FR-04, US-02 | 1.5 | T-014 |
+| T-043 | Operators see a weekly summary with each task's time, cap, active count and waitlist count. | FR-12, US-07 | 2 | T-014 |
 
 ### M3: protected volunteer records
 
 | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | ---: | --- |
-| T-016 | Record the owner's decision on how operators sign in and how operator accounts are added and removed. | FR-01 | U | OQ-08 |
-| T-017 | Record the board's privacy, retention and deletion rules for volunteer, donor and accounting data in SPECIFICATION.md. | US-01 | U | OQ-07 |
-| T-018 | Record who owns the existing master spreadsheet and get operator access to it in the board's Google Workspace. | US-01 | U | OQ-15 |
-| T-038 | Record the owner's review of the backend email-matching risk, the approved abuse controls and the recovery process. | FR-15 | U | T-017 |
-| T-019 | Operator screens require the approved sign-in. | FR-01 | U | T-016 |
-| T-020 | Operators can view and edit a volunteer's name, email, phone and shift preferences, and the save updates the master spreadsheet. | FR-01, US-01 | U | T-018, T-019 |
-| T-021 | The public form collects profile fields and stores them with the sign-up, separate from the master sheet, and never displays stored volunteer information. | FR-15, FR-16 | U | T-014 |
-| T-040 | Operators can review a submission's profile details next to the matched record and save approved changes to the master sheet. | FR-15, FR-16 | U | T-020, T-021 |
-| T-041 | Verify and record that a visitor cannot open operator screens or see any other volunteer's details. | FR-16 | U | T-019, T-021 |
+| T-016 | Record the owner's decision on how operators sign in and how operator accounts are added and removed. | FR-01 | 0.5 p | OQ-08 |
+| T-017 | Record the board's privacy, retention and deletion rules for volunteer, donor and accounting data in SPECIFICATION.md. | US-01 | 1 p | OQ-07 |
+| T-018 | Record who owns the existing master spreadsheet and get operator access to it in the board's Google Workspace. | US-01 | 1 | OQ-15 |
+| T-038 | Record the owner's review of the backend email-matching risk, the approved abuse controls and the recovery process. | FR-15 | 1 p | T-017 |
+| T-019 | Operator screens require the approved sign-in. | FR-01 | 2 p | T-016 |
+| T-020 | Operators can view and edit a volunteer's name, email, phone and shift preferences, and the save updates the master spreadsheet. | FR-01, US-01 | 4 | T-018, T-019 |
+| T-021 | The public form collects profile fields and stores them with the sign-up, separate from the master sheet, and never displays stored volunteer information. | FR-15, FR-16 | 2 | T-014 |
+| T-040 | Operators can review a submission's profile details next to the matched record and save approved changes to the master sheet. | FR-15, FR-16 | 3 | T-020, T-021 |
+| T-041 | Verify and record that a visitor cannot open operator screens or see any other volunteer's details. | FR-16 | 1 | T-019, T-021 |
 
 ### M4: email, withdrawals and promotion
 
 | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | ---: | --- |
-| T-022 | Record the approved wording of the Tuesday sign-up email and the Friday confirmation. | FR-06, FR-07 | U | OQ-06 |
-| T-039 | Record the internal address for withdrawal requests and how a message identifies the sign-up. | FR-14 | U | OQ-05 |
-| T-046 | Record the approved rules for failed sends, missed jobs, retries and duplicate-send prevention. | FR-06, FR-07 | U | OQ-12 |
-| T-023 | Send the Tuesday 2:30 p.m. Eastern sign-up email to every volunteer individually, with the week's form link. | FR-06, US-03 | U | T-022, T-013 |
-| T-024 | Send the Friday 9:00 a.m. Eastern confirmation to volunteers with active sign-ups. | FR-07, US-03 | U | T-022, T-014 |
-| T-044 | Operators see each email batch's status and each failed recipient. | FR-06, FR-07 | U | T-046, T-023 |
-| T-025 | When a place opens, promote the first waitlisted request and email the volunteer; a failed email shows as failed to operators. | FR-05, US-02 | U | T-014, T-022 |
-| T-026 | Process a withdrawal email from an address on file, remove the sign-up and trigger promotion; unmatched emails are flagged for an operator. | FR-14, US-02 | U | T-039, T-025 |
+| T-022 | Record the approved wording of the Tuesday sign-up email and the Friday confirmation. | FR-06, FR-07 | 0.5 p | OQ-06 |
+| T-039 | Record the internal address for withdrawal requests and how a message identifies the sign-up. | FR-14 | 0.5 p | OQ-05 |
+| T-046 | Record the approved rules for failed sends, missed jobs, retries and duplicate-send prevention. | FR-06, FR-07 | 1 p | OQ-12 |
+| T-023 | Send the Tuesday 2:30 p.m. Eastern sign-up email to every volunteer individually, with the week's form link. | FR-06, US-03 | 3 | T-022, T-013 |
+| T-024 | Send the Friday 9:00 a.m. Eastern confirmation to volunteers with active sign-ups. | FR-07, US-03 | 2 | T-022, T-014 |
+| T-044 | Operators see each email batch's status and each failed recipient. | FR-06, FR-07 | 2.5 | T-046, T-023 |
+| T-025 | When a place opens, promote the first waitlisted request and email the volunteer; a failed email shows as failed to operators. | FR-05, US-02 | 3 | T-014, T-022 |
+| T-026 | Process a withdrawal email from an address on file, remove the sign-up and trigger promotion; unmatched emails are flagged for an operator. | FR-14, US-02 | 4 p | T-039, T-025 |
 
 ### M5: finance and volunteer preparation
 
 | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | ---: | --- |
-| T-027 | Record the owner's decision on the donation payment system and the donor fields to store. | FR-08 | U | OQ-01 |
-| T-028 | Record the approved expense categories and fields, report and budget periods, currency, and who sets the budget. | FR-09, FR-10 | U | OQ-03 |
-| T-029 | Update SPECIFICATION.md so US-05 and FR-11 agree on what volunteer preparation v1 includes. | US-05, FR-11 | U | OQ-02 |
-| T-030 | Record each incoming donation automatically with amount, donor name, donor email and payment reference, and no operator identity. | FR-08, US-04 | U | T-027, T-019 |
-| T-031 | Operators can enter an expense with date, amount and category and see it in the expense list. | FR-09, US-06 | U | T-028, T-019 |
-| T-032 | Operators can generate a spending report and a budget report for a period; a failed calculation never shows as zero. | FR-10, US-06 | U | T-031 |
-| T-033 | Include the approved compliance video link in the Tuesday sign-up email, with no completion tracking. | FR-11, US-05 | U | T-029, T-023 |
+| T-027 | Record the owner's decision on the donation payment system and the donor fields to store. Payment system decided 2026-11-18: Zeffy (PLAN.md §6); donor fields and the free Zeffy-to-Sheets connection remain. | FR-08 | 2 p | OQ-01 |
+| T-028 | Record the approved expense categories and fields, report and budget periods, currency, and who sets the budget. | FR-09, FR-10 | 1 p | OQ-03 |
+| T-029 | Update SPECIFICATION.md so US-05 and FR-11 agree on what volunteer preparation v1 includes. | US-05, FR-11 | 0.5 | OQ-02 |
+| T-030 | Record each incoming donation automatically with amount, donor name, donor email and payment reference, and no operator identity. | FR-08, US-04 | 4 p | T-027, T-019 |
+| T-031 | Operators can enter an expense with date, amount and category and see it in the expense list. | FR-09, US-06 | 2.5 | T-028, T-019 |
+| T-032 | Operators can generate a spending report and a budget report for a period; a failed calculation never shows as zero. | FR-10, US-06 | 3 p | T-031 |
+| T-033 | Include the approved compliance video link in the Tuesday sign-up email, with no completion tracking. | FR-11, US-05 | 0.5 | T-029, T-023 |
 
 ### M6: integrated acceptance and release
 
 | ID | Task | Ref | Est. | Blocked by |
 | --- | --- | --- | ---: | --- |
-| T-034 | Record the owner's "full operation" checklist and the supported devices, browsers and accessibility standard. | US-07 | U | OQ-10, OQ-13 |
-| T-035 | Run the end-to-end weekly walkthrough with approved test data against the checklist and record each result. | US-01 to US-07 | U | T-034, M2 to M5 |
-| T-036 | Run and record the accessibility, device, privacy and access checks on the sign-up flow. | FR-03, FR-16 | U | T-034 |
-| T-045 | Write the README sections on how to run the project and how to contribute. | Infra | U | T-010 |
-| T-037 | Confirm costs fit the approved budget, deploy the approved v1 and record the release. | Infra | U | T-035, T-036, T-008 |
+| T-034 | Record the owner's "full operation" checklist and the supported devices, browsers and accessibility standard. | US-07 | 1 | OQ-10, OQ-13 |
+| T-035 | Run the end-to-end weekly walkthrough with approved test data against the checklist and record each result. | US-01 to US-07 | 3 | T-034, M2 to M5 |
+| T-036 | Run and record the accessibility, device, privacy and access checks on the sign-up flow. | FR-03, FR-16 | 3 | T-034 |
+| T-045 | Write the README sections on how to run the project and how to contribute. | Infra | 1 | T-010 |
+| T-037 | Confirm costs fit the approved budget, deploy the approved v1 and record the release. | Infra | 1.5 | T-035, T-036, T-008 |
 
 ---
 
@@ -171,3 +164,5 @@ Ideas from CONCEPT-IDEA.md that are outside v1. None is approved or scheduled.
 | T-005d | Deploy the prototype; confirm on desktop and phone that all three states work from a clean page load and that the page sends no data anywhere. | US-02 (prototype only) | 2026-11-16 | Deployed at <https://andrewmiaao.github.io/SPUR-AI-Research/kitchen/demo/>. All three states ran from a clean load: on phone by the owner (Safari on iPhone), on desktop by Claude in the Claude desktop app's built-in browser. No request was sent after the page loaded, and the live source has no name, email or phone number. The owner later ran the three states on desktop during the T-009 walkthrough (Google Chrome on a Mac). Details in WORK-LOG.md. |
 | T-009 | Walk the owner through the demo at the production URL in under one minute; record feedback, blockers and new decisions in WORK-LOG.md. | US-02 (prototype only) | 2026-11-16 | Owner ran the three-state walkthrough at the production URL in about 10 seconds, in Google Chrome on a Mac. Feedback, blockers (none) and decisions (none) recorded in WORK-LOG.md; one new idea added under `Later`. |
 | T-006 | Record the owner's decision on where the sign-up entry point goes on the Squarespace site, the method (link or embed), access and cost. | FR-17 | 2026-11-16 | Owner decided: a link or button on the existing volunteer page; a board member with existing access makes the change; $0 only. Recorded in PLAN.md §6 and SPECIFICATION.md v0.2.3 (OQ-16). Exact page, editor and link wording not yet recorded. |
+| T-010 | Record the owner's decisions on the application and storage approach and on the project budget as approved entries in PLAN.md §6. | Infra | 2026-11-18 | Owner decided: $0 budget (OQ-09); Google Workspace for everything unless the owner says otherwise; Google Sheets for data (OQ-15); a Google Apps Script web app; Zeffy for donations. Recorded in PLAN.md §6 and SPECIFICATION.md v0.2.4, in pull request 6. Not yet verified: Apps Script quotas, the board's account type and cost, public web-app access, and a free Zeffy-to-Sheets connection. |
+| T-011 | Give every `U` task below a base estimate plus 50% buffer, compare the total with the 32-hour envelope, and record the feasibility verdict in PLAN.md §3. | Infra | 2026-11-18 | Claude drafted base estimates for all 37 M2–M6 and Squarespace tasks: 74 h base, 111 h with buffer (114 h including T-011). Verdict recorded in PLAN.md §3: M6 by week 5 is infeasible at 10 h/week; it exceeds the 32-hour envelope even without the 22 h of provisional estimates. Owner approved the estimates on 2026-11-18 and moved the M6 target to February 14, 2027 (PLAN.md §5; SPECIFICATION.md v0.2.5). Pull request 6. |
