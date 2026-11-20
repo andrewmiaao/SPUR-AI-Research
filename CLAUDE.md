@@ -10,7 +10,7 @@ There is no application code yet. There is no build, lint or test tooling. The r
 
 - Planning docs at the root: `CONCEPT-IDEA.md` → `SPECIFICATION.md` → `PLAN.md` → `BACKLOG.md`, plus `WORK-LOG.md`.
 - `docs/`: a static GitHub Pages site (`index.html` is the SPUR placeholder landing page; `.nojekyll` disables Jekyll). It is served straight from `/docs` with no build step.
-- The repository is shared with the kitchen's board: never commit volunteer, donor or financial data, or any key.
+- The repository will be shared with the kitchen's board (not yet, as of 2026-11-20): never commit volunteer, donor or financial data, or any key.
 - `.vscode/mcp.json`: MCP servers for VS Code/Copilot (GitHub, Context7, Microsoft Learn, Tavily, memory, sequential-thinking, filesystem, Playwright). The Tavily key is a prompt input. Never hard-code it.
 
 ## Planning workflow (from `.github/copilot-instructions.md`)
