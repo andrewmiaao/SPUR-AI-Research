@@ -79,12 +79,12 @@ For accounting, the owner wants board members to be able to review incoming dona
 
 ## 5. What success looks like
 
-The longer-term outcome is that an approved agent may become a useful, ongoing partner to the board and make the nonprofit's operations easier. The v1 operational tool is a separate, earlier deliverable; it does not include that agent. Whether and when a full operation can serve as an early demonstration remains subject to an owner-approved checklist and date.
+The longer-term outcome is that an approved agent may become a useful, ongoing partner to the board and make the nonprofit's operations easier. On 2026-11-18 the owner decided that the AI agent (Claude) is part of v1 as the system's automation layer: it runs the weekly sign-up, email, withdrawal and donation-recording work on top of Google Forms, Google Sheets and Gmail, with the weekly scheduled emails sent without operator approval (SPECIFICATION.md v0.3.2). Open-ended collaboration on new projects and the secondary goals stay longer-term. Whether and when a full operation can serve as an early demonstration remains subject to an owner-approved checklist and date.
 
 | Signal | How we measure it | Target | By when |
 | --- | --- | --- | --- |
 | The kitchen's backend operations are complete| Check whether the master spreadsheet is running, integrated into the website, emails are being sent, and shifts are being scheduled; the exact checklist and date still need owner confirmation | One full operation (proposed; checklist and acceptance method not approved) | Saturday, November 21, 2026 is the target for a demo production release: the M0/M1 demo (live entry shell plus fake-data volunteer flow) at a production URL. That is not the full v1 release or proof of a full operation. The operation target date remains unconfirmed. |
-| The agent provides useful ongoing support to the board | Board members review whether the agent helped with current priorities and eased routine operational work; specific measures are not yet agreed | Proposed longer-term outcome; v1 is an operational tool and does not include the conversational agent | Define and measure only after board-led discovery and approval of an agent pilot; no v1 date is set. |
+| The agent provides useful ongoing support to the board | Board members review whether the agent helped with current priorities and eased routine operational work; specific measures are not yet agreed | Proposed longer-term outcome. Since 2026-11-18 v1 includes the agent for the weekly operational work only | Usefulness measures still need board-led discovery and approval; no date is set. |
 
 The precise operation checklist and measures of ongoing usefulness—such as time saved or work the board can complete more easily—are not yet agreed.
 
@@ -153,6 +153,8 @@ Previous reviewer: project owner (2026-10-31).
 **Documentation clarification:** On 2026-11-05, the owner authorized clarifying that November 21 is a fake-data prototype target, separating v1 from the longer-term agent outcome, and recording the unreconciled capacity estimates. No operational scope or unresolved owner decision was changed.
 
 **Owner-directed correction:** On 2026-11-13, the owner confirmed that a volunteer may sign up for only one task per week, that only operators edit volunteer profiles, that November 21, 2026 is the target for a demo production release of the M0/M1 scope, and that stored volunteer information, including emails, stays in the backend and is never shown on the public form.
+
+**Owner decision, 2026-11-18 (not yet a reviewed concept revision):** v1 uses Google Forms, Google Sheets and Gmail with no paid Google Workspace subscription and no Google Apps Script, and the AI agent does the automation. This replaces the earlier rule that v1 does not include the agent. Details are in SPECIFICATION.md v0.3.2, which is a draft awaiting owner approval.
 
 **Reviewer notes:**
 

@@ -4,17 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-The repo is named "SPUR AI Research" (exploring sustainability topics with AI agents), but its active project is the **Brooklyn Community Kitchen AI Assistant**: an operational tool for a small nonprofit's five board members and one part-time helper. It covers weekly volunteer shift sign-ups with caps and waitlists, a volunteer master spreadsheet, scheduled emails, donation tracking, and expense/budget reports. The conversational AI agent is a **later phase and not part of v1**.
+The repo is named "SPUR AI Research" (exploring sustainability topics with AI agents), but its active project is the **Brooklyn Community Kitchen AI Assistant**: an operational tool for a small nonprofit's five board members and one part-time helper. It covers weekly volunteer shift sign-ups with caps and waitlists, a volunteer master spreadsheet, scheduled emails, donation tracking, and expense/budget reports. Since 2026-11-18 (spec v0.3.2, draft awaiting owner approval) v1 is built from **Google Forms, Google Sheets and Gmail** on free Google accounts (no paid Google Workspace, no Apps Script), and **the AI agent (Claude) does the automation**. Open-ended collaboration with the board stays a later phase.
 
 There is no application code yet. There is no build, lint or test tooling. The repo has:
 
 - Planning docs at the root: `CONCEPT-IDEA.md` → `SPECIFICATION.md` → `PLAN.md` → `BACKLOG.md`, plus `WORK-LOG.md`.
 - `docs/`: a static GitHub Pages site (`index.html` is the SPUR placeholder landing page; `.nojekyll` disables Jekyll). It is served straight from `/docs` with no build step.
+- The repository is shared with the kitchen's board: never commit volunteer, donor or financial data, or any key.
 - `.vscode/mcp.json`: MCP servers for VS Code/Copilot (GitHub, Context7, Microsoft Learn, Tavily, memory, sequential-thinking, filesystem, Playwright). The Tavily key is a prompt input. Never hard-code it.
 
 ## Planning workflow (from `.github/copilot-instructions.md`)
 
-- The four planning docs are the source of truth. Check each doc's **status and reviewer sign-off** before relying on it. Current state: concept `Approved`; spec v0.2.2, plan and backlog approved by the owner on 2026-11-13. That approval covers the documents only: the spec's open questions, readiness checklist and implementation gates are still open, and blocked or unestimated backlog tasks stay blocked.
+- The four planning docs are the source of truth. Check each doc's **status and reviewer sign-off** before relying on it. Current state: concept `Approved`; spec v0.2.2, plan and backlog approved by the owner on 2026-11-13; spec v0.3.2 and the re-planned M2–M6 backlog and estimates (2026-11-18) are drafts awaiting owner approval. That approval covers the documents only: the spec's open questions, readiness checklist and implementation gates are still open, and blocked or unestimated backlog tasks stay blocked.
 - Order is concept → spec → plan → backlog → implementation. Backlog items must trace to spec stories/requirements (US-xx, FR-xx). New ideas go under `Later`.
 - **Do not choose** a language, framework, data store, auth approach, email provider or other undecided architecture. Write it up as a proposal with rationale and rejected alternatives for the owner to review (see the pattern in `PLAN.md` §6).
 - Many requirements are blocked on open questions (OQ-01…OQ-16 in `SPECIFICATION.md` §12). If a requirement depends on an open OQ, stop and record the blocker. Don't invent the behavior.
@@ -30,6 +31,7 @@ There is no application code yet. There is no build, lint or test tooling. The r
 ## Domain rules that are easy to get wrong
 
 - **One task per volunteer per week.** A second request is rejected even when the times don't overlap (spec §8, FR-04).
+- **The weekly scheduled emails (Tuesday signup, Friday confirmation) go out on the agent's scheduled runs without operator approval** (owner decision 2026-11-18, spec §1.1); the agent holds and flags a batch if the wording, schedule, form or recipient list doesn't match. Waitlist notices need no approval either; promotions and other one-off emails need operator approval until OQ-21 is decided. Volunteer email is sent from the kitchen's Gmail account. Public shift block caps: 7 (7:30 a.m.) and 9 (11:00 a.m.). The agent isn't always running, so rules that must always hold (caps, waitlist order, one request per week, the Thursday deadline) are spreadsheet formulas over the Google Form timestamps, not agent logic.
 - **Public form submissions never write to the master profile sheet.** Only authenticated operators edit volunteer profiles (FR-15/FR-16). Sign-up/waitlist records live in a separate sheet, linked by email. The public form never shows stored volunteer information, including emails. Email matching happens only in the backend, for operator review, and there is no prefill.
 - The public form shows only two shift blocks, 7:30 a.m. and 11:00 a.m. The detailed task table with caps is the internal operating schedule.
 - All scheduled times are US Eastern and follow DST: signup email Tue ~2:30 p.m., sign-ups close Thu 6:00 p.m., confirmations Fri 9:00 a.m.
